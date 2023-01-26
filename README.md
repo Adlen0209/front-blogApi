@@ -9,4 +9,3 @@ npm start
 ```bash
 npm lint
 ```
-re

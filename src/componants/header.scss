@@ -1,0 +1,27 @@
+
+
+.header {
+
+&-ulNav {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+&-liNav {
+    list-style-type:none;
+    margin-top: 20px;    
+    color: black;
+}
+
+&-nav {
+    
+    height: 5vh;
+    border-bottom: 1px solid black;
+}
+
+&-links {
+    text-decoration: none;
+    color: black;
+}
+}
