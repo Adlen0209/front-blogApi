@@ -2,6 +2,9 @@ import { NavLink } from 'react-router-dom';
 import { CategoryType } from 'src/service/categories';
 import './header.scss';
 
+
+
+
 type HeaderProps = {
   categories: CategoryType[];
 }
@@ -10,7 +13,8 @@ const Header: React.FC<HeaderProps> = ({ categories }) => {
       <nav className="header-nav" >
         <ul className="header-ulNav">
           {categories.map(({route, label}) => (
-       <li key={route} className="header-liNav">   <NavLink  className="header-links" to={route}>
+       <li key={route} className="header-liNav">   <NavLink  className={({ isActive }) =>
+       isActive ? 'header-links header-links--active' : 'header-links'} to={route}>
             {label}
           </NavLink></li>
           ))}
@@ -20,4 +24,8 @@ const Header: React.FC<HeaderProps> = ({ categories }) => {
   };
  
 
+
 export default Header;
+
+
+            

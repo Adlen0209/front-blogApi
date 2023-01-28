@@ -1,9 +1,33 @@
 .divArticle {
-    display: flex;
     
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+    
+   
 }
 
 .article {
-    width: 20vh;
     
+    width: 50%;
+    padding: 2rem;
+    box-sizing: border-box;
+    @media (max-width : 760px){
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    // @media (max-width : 600px){
+    //     width: 20vh;
+    // }
+    &-category {
+    background-color: red;
+    color: white;
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+    }
 }

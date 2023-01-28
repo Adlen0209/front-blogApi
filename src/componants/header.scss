@@ -4,14 +4,19 @@
 
 &-ulNav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    
+    
+    @media (max-width : 701px){
+        justify-content: space-around;
+    }
     
 }
 
 &-liNav {
-    list-style-type:none;
-    margin-top: 20px;    
+    list-style-type:none;  
     color: black;
+    margin: 20px 1rem ;
 }
 
 &-nav {
@@ -23,5 +28,14 @@
 &-links {
     text-decoration: none;
     color: black;
+&:hover {
+    color:lightcoral;
 }
+&--active {
+    text-decoration: underline;
+    color: lightcoral;
+}
+}
+
+
 }

@@ -3,7 +3,7 @@ import Content from "./Content"
 
 const Contents: React.FC = () =>{
   return (
-    <div><Content /></div>
+    <div className='divArticle'><Content /><Content /><Content /><Content /><Content /><Content /></div>
   )
 }
 
