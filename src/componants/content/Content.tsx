@@ -12,7 +12,7 @@ const Content: React.FC<ArticlesProps> = ({ slug, title, category, content }) =>
   return (
   
     <article className="article">
-        <Link to={`/article/${slug}`}> 
+        <Link to={`/articles/${slug}`}> 
         <h1>{title}</h1>
         <div className="article-category"> {category}</div>
         <p>{content}

@@ -6,3 +6,8 @@ export function getArticlesByCategory(articles: ArticlesType[], category: string
     }
     return articles.filter((article) => article.category === category)
 }
+
+
+export function findArticleBySlug(articles: ArticlesType[], slug: string | undefined) {
+  return articles.find((article) => article.slug === slug);
+}

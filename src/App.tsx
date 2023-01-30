@@ -6,6 +6,7 @@ import { fetchCategories } from "./service/categories";
 import { Route, Routes } from "react-router-dom";
 import { ArticlesType, fetchArticles } from "./service/articles";
 import { getArticlesByCategory } from "./utils/dataTools";
+import ArticlePage from "./componants/articlePage";
 
 const App: React.FC = () => {
    const categoryQuery = useQuery('categories', fetchCategories)
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         />
 
       ))}
+      <Route path="/articles/:slug" element={<ArticlePage articles={articlesQuery.data as ArticlesType[]} />} />
     </Routes>
     </div>
   )};
