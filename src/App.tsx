@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { ArticlesType, fetchArticles } from "./service/articles";
 import { getArticlesByCategory } from "./utils/dataTools";
 import ArticlePage from "./componants/articlePage";
+import Spinner from "./componants/spinner/spinner";
 
 const App: React.FC = () => {
    const categoryQuery = useQuery('categories', fetchCategories)
@@ -17,7 +18,7 @@ const App: React.FC = () => {
     return <h1> Erreur querys</h1>
   }
   if(categoryQuery.isLoading || articlesQuery.isLoading) {
-    return <h1> Loading ...</h1>
+    return <Spinner />
   }
     return (<div><Header categories={categoryQuery.data ?? []} />
     <Routes>

@@ -10,9 +10,15 @@ export type ArticlesType = {
     title: string;
     content: string;
 }
+
+const delay = () => {
+    return new Promise(resolve => setTimeout(resolve, 2000));
+}
+
 export const fetchArticles = async (): Promise<ArticlesType[]> => {
     try {
         const {data} = await axios.get<ArticlesType[]>('/articles');
+        await delay();
         return data;
     } catch (error) {
         throw error

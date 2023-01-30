@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { ArticlesType } from 'src/service/articles';
 import { findArticleBySlug } from '../utils/dataTools';
+import Spinner from './spinner/spinner';
 
 type ArticlePageProps = {
     articles: ArticlesType[],
@@ -11,7 +12,9 @@ type ArticlePageProps = {
 const ArticlePage: React.FC<ArticlePageProps> = ({ articles }) => {
     const {slug} = useParams<{ slug: string }>();
 
-    // TODO: spinner
+    if(articles.length === 0) {
+        return <Spinner />
+    }
 
     const article = findArticleBySlug(articles, slug);
     if(!article) {
