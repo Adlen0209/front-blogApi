@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { signup } from '../../service/auth';
 import './signup.scss';
@@ -18,6 +18,7 @@ const Signup: React.FC = () => {
     register,
     handleSubmit,
     trigger,
+    setFocus,
     watch,
     getValues,
     formState: { errors },
@@ -26,6 +27,11 @@ const Signup: React.FC = () => {
 const onSubmit = async (data: Inputs) => {
     signup(data.firstName, data.lastName, data.email, data.password);
 }
+
+useEffect(() => {
+    setFocus('firstName');
+}, [setFocus]);
+
   return (
     <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
       <div className='signup-form--input'>

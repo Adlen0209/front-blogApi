@@ -9,6 +9,7 @@ import { getArticlesByCategory } from "./utils/dataTools";
 import ArticlePage from "./componants/articlePage";
 import Spinner from "./componants/spinner/spinner";
 import Signup from "./componants/signup/signup";
+import Login from "./componants/login/login";
 
 const App: React.FC = () => {
    const categoryQuery = useQuery('categories', fetchCategories)
@@ -33,6 +34,8 @@ const App: React.FC = () => {
       ))}
       <Route path="/articles/:slug" element={<ArticlePage articles={articlesQuery.data as ArticlesType[]} />} />
       <Route path='/signup' element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+
       <Route path="*" element={'404'} />
     </Routes>
     </div>
