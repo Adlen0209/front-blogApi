@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { signup } from '../../service/auth';
+import './signup.scss';
 
 
 type Inputs = {

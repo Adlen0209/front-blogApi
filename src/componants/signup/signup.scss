@@ -1,0 +1,16 @@
+.signup-form {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    &--input {
+        margin-top: 0.2rem;
+        width: 12rem;
+        
+}
+    &--submit {
+        margin-top: 0.4rem;
+    }
+}
