@@ -1,5 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { signup } from '../../service/auth';
+
 
 type Inputs = {
   firstName: string;
@@ -20,9 +22,11 @@ const Signup: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onBlur' });
 
-
+const onSubmit = async (data: Inputs) => {
+    signup(data.firstName, data.lastName, data.email, data.password);
+}
   return (
-    <form className='signup-form' onSubmit={handleSubmit((data: any) => console.log(data))}>
+    <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
       <div className='signup-form--input'>
         <label className='signup-form--label'>Firstname</label>
         <input
@@ -118,7 +122,7 @@ const Signup: React.FC = () => {
       </div>
 
       <button className='signup-form--submit' type='submit'>Sign Up</button>
-      
+
     </form>
   );
 };
