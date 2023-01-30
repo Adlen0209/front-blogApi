@@ -8,9 +8,9 @@ export type CategoryType = {
     route: string;
     label: string;
 }
-export const fetchCategories = async () => {
+export const fetchCategories = async (): Promise<CategoryType[]> => {
     try {
-        const {data} = await axios.get('/categories');
+        const {data} = await axios.get<CategoryType[]>('/categories');
         return data;
     } catch (error) {
         throw error
