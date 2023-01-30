@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { login } from '../../service/auth';
+import './login.scss';
 
 export type Inputs = {
     email: string,
