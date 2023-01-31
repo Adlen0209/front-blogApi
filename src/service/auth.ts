@@ -28,6 +28,7 @@ export async function login(data: Inputs) {
             password
         });
         console.log(response)
+
         if(response.data.token) {
             localStorage.setItem('token', JSON.stringify(response.data.token));
             

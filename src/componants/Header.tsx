@@ -18,7 +18,13 @@ const Header: React.FC<HeaderProps> = ({ categories }) => {
             {label}
           </NavLink></li>
           ))}
+         
         </ul>
+        <div className="header-links--login">
+
+<NavLink className={'header-links--loginPage'} to={'/login'}> Login </NavLink>
+<NavLink className={'header-links--signup'} to={'/signup'}> SignUp </NavLink>
+   </div>
       </nav>
     </header>;
   };

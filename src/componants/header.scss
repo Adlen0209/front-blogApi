@@ -23,7 +23,9 @@
     
     height: 5vh;
     border-bottom: 1px solid black;
+    
 }
+
 
 &-links {
     text-decoration: none;
@@ -34,6 +36,18 @@
 &--active {
     text-decoration: underline;
     color: lightcoral;
+}
+
+&--login {
+    
+    float: right;
+    margin-right: 40px;
+    margin-top: -40px;
+}
+&--signup {
+   
+    margin-left: 10px;
+    margin-top: -40px;
 }
 }
 
