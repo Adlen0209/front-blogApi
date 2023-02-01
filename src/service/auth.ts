@@ -52,6 +52,10 @@ export const isAuthenticated = () => {
     console.log('token no valid');
     return false;
   }
+  if(decoded.userId) {
+    console.log(decoded.userId);
+  }
+  
   console.log('token valid');
   return JSON.parse(token);
 };
