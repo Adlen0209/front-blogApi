@@ -13,6 +13,7 @@ import Login from './componants/login/login';
 import { useContext, useEffect } from 'react';
 import { UserContext } from './context/userContext';
 import { isAuthenticated } from './service/auth';
+import CreateArticle from './componants/createArticle/CreateArticle';
 
 const App: React.FC = () => {
   const { loggedIn, toggleLoggedIn } = useContext(UserContext);
@@ -57,6 +58,7 @@ const App: React.FC = () => {
         />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/create' element={<CreateArticle categories={categoryQuery.data ?? []} />} />
 
         <Route path='*' element={'404'} />
       </Routes>

@@ -48,9 +48,13 @@ const Header: React.FC<HeaderProps> = ({ categories }) => {
               </NavLink>
             </>
           ) : (
+            <>
+            <NavLink className={'header-links--edit'}  to='/create'> Edit new article</NavLink>
             <NavLink className={'header-links--logout'} onClick={removeToken} to='/'>
               Logout{' '}
-            </NavLink>
+              </NavLink>
+            
+            </>
           )}
         </div>
       </nav>

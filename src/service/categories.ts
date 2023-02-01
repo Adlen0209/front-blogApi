@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { ReactNode } from 'react';
 
 axios.defaults.baseURL = 'http://localhost:3000/api/v1';
 
 export type CategoryType = {
+  name: ReactNode;
   id: number;
   route: string;
   label: string;
