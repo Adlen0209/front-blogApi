@@ -1,51 +1,59 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
 import { login } from '../../service/auth';
 import './login.scss';
 
 export type Inputs = {
-    email: string,
-    password: string
-}
+  email: string;
+  password: string;
+};
 const Login: React.FC = () => {
-    const { register, handleSubmit, setFocus, trigger, formState: { errors } } 
-    = useForm<Inputs>({ mode: 'onBlur' });
+  const { toggleLoggedIn } = useContext(UserContext);
+  const navigate = useNavigate();
 
-     const onSubmit = async (data: Inputs) => {
-         login(data);
-     }
+  const {
+    register,
+    handleSubmit,
+    setFocus,
+    trigger,
+    formState: { errors },
+  } = useForm<Inputs>({ mode: 'onBlur' });
 
+  const onSubmit = async (data: Inputs) => {
+    const response = await login(data);
+    if (response.token) {
+      toggleLoggedIn(true);
+      navigate('/');
+    }
+  };
 
-useEffect(() => {
+  useEffect(() => {
     setFocus('email');
-}, [setFocus]);
-
+  }, [setFocus]);
 
   return (
-    <form className='login-form' 
-          onSubmit={handleSubmit(onSubmit)}
-    >
-        <div className='login-form--field'>
+    <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+      <div className='login-form--field'>
         <label className='login-form--label'>Email</label>
-        <input className='login-form--input'
-               id='email'
-               type='email'
-               required= {true}
-               {...register('email', {
-                required: 'email is required',
-                pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: 'Invalid email',
-                }
+        <input
+          className='login-form--input'
+          id='email'
+          type='email'
+          required={true}
+          {...register('email', {
+            required: 'email is required',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: 'Invalid email',
+            },
+          })}
+          onKeyUp={() => trigger('email')}
+        ></input>
+      </div>
 
-            })}
-            onKeyUp={() => trigger('email')}
-            >
-              
-               </input>
-        </div>
-
-        <div className='login-form--input'>
+      <div className='login-form--input'>
         <label className='login-form--label'>Password</label>
         <input
           className='login-form--input'
@@ -54,20 +62,17 @@ useEffect(() => {
           required={true}
           {...register('password', {
             required: 'Password is required',
-           
           })}
           onKeyUp={() => trigger('password')}
         />
         {errors.password && <p className='login-form--error'>{errors.password.message}</p>}
       </div>
 
-      <button className='login-form--submit' type='submit'>Login</button>
-
-
-
+      <button className='login-form--submit' type='submit'>
+        Login
+      </button>
     </form>
-
-  )
-}
+  );
+};
 
 export default Login;

@@ -1,21 +1,18 @@
-import { ArticlesType } from "src/service/articles";
-import Content from "./Content"
+import { ArticlesType } from 'src/service/articles';
+import Content from './Content';
 
 type ContentsProps = {
   articles: ArticlesType[];
 };
 
-const Contents: React.FC<ContentsProps> = ({articles}) =>{
+const Contents: React.FC<ContentsProps> = ({ articles }) => {
   return (
     <div className='divArticle'>
-      {articles.map(({id, ...rest}) => (
-        <Content 
-        key={id}
-        {...rest}
-        />
+      {articles.map(({ id, ...rest }) => (
+        <Content key={id} {...rest} />
       ))}
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Contents
+export default Contents;

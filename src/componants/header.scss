@@ -1,55 +1,43 @@
-
-
 .header {
-
-&-ulNav {
+  &-ulNav {
     display: flex;
     justify-content: center;
-    
-    
-    @media (max-width : 701px){
-        justify-content: space-around;
+
+    @media (max-width: 701px) {
+      justify-content: space-around;
     }
-    
-}
+  }
 
-&-liNav {
-    list-style-type:none;  
+  &-liNav {
+    list-style-type: none;
     color: black;
-    margin: 20px 1rem ;
-}
+    margin: 20px 1rem;
+  }
 
-&-nav {
-    
+  &-nav {
     height: 5vh;
     border-bottom: 1px solid black;
-    
-}
+  }
 
-
-&-links {
+  &-links {
     text-decoration: none;
     color: black;
-&:hover {
-    color:lightcoral;
-}
-&--active {
-    text-decoration: underline;
-    color: lightcoral;
-}
+    &:hover {
+      color: lightcoral;
+    }
+    &--active {
+      text-decoration: underline;
+      color: lightcoral;
+    }
 
-&--login {
-    
-    float: right;
-    margin-right: 40px;
-    margin-top: -40px;
-}
-&--signup {
-   
-    margin-left: 10px;
-    margin-top: -40px;
-}
-}
-
-
+    &--login {
+      float: right;
+      margin-right: 40px;
+      margin-top: -40px;
+    }
+    &--signup {
+      margin-left: 10px;
+      margin-top: -40px;
+    }
+  }
 }

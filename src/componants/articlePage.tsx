@@ -5,29 +5,27 @@ import { findArticleBySlug } from '../utils/dataTools';
 import Spinner from './spinner/spinner';
 
 type ArticlePageProps = {
-    articles: ArticlesType[],
-
-}
+  articles: ArticlesType[];
+};
 
 const ArticlePage: React.FC<ArticlePageProps> = ({ articles }) => {
-    const {slug} = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug: string }>();
 
-    if(articles.length === 0) {
-        return <Spinner />
-    }
+  if (articles.length === 0) {
+    return <Spinner />;
+  }
 
-    const article = findArticleBySlug(articles, slug);
-    if(!article) {
-        return <Navigate to="/404" />
-    }
+  const article = findArticleBySlug(articles, slug);
+  if (!article) {
+    return <Navigate to='/404' />;
+  }
 
   return (
-    
     <article className='article'>
-        <h1>{article.title}</h1>
-        <p>{article.content}</p>
+      <h1>{article.title}</h1>
+      <p>{article.content}</p>
     </article>
-  )
-}
+  );
+};
 
 export default ArticlePage;

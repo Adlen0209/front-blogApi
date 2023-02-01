@@ -1,11 +1,9 @@
 import './spinner.scss';
 
-import React from 'react'
+import React from 'react';
 
 const Spinner: React.FC = () => {
-  return (
-    <div className='spinner'></div>
-  )
+  return <div className='spinner'></div>;
 };
 
 export default Spinner;

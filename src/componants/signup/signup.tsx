@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { signup } from '../../service/auth';
 import './signup.scss';
-
 
 type Inputs = {
   firstName: string;
@@ -11,7 +10,6 @@ type Inputs = {
   password: string;
   confirmPassword: string;
 };
-
 
 const Signup: React.FC = () => {
   const {
@@ -24,13 +22,13 @@ const Signup: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onBlur' });
 
-const onSubmit = async (data: Inputs) => {
+  const onSubmit = async (data: Inputs) => {
     signup(data.firstName, data.lastName, data.email, data.password);
-}
+  };
 
-useEffect(() => {
+  useEffect(() => {
     setFocus('firstName');
-}, [setFocus]);
+  }, [setFocus]);
 
   return (
     <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +47,6 @@ useEffect(() => {
         {errors.firstName && <p className='signup-form--error'>{errors.firstName.message}</p>}
       </div>
 
-
       <div className='signup-form--input'>
         <label className='signup-form--label'>Lastname</label>
         <input
@@ -64,7 +61,6 @@ useEffect(() => {
         />
         {errors.lastName && <p className='signup-form--error'>{errors.lastName.message}</p>}
       </div>
-
 
       <div className='signup-form--input'>
         <label className='signup-form--label'>Email</label>
@@ -84,7 +80,6 @@ useEffect(() => {
         />
         {errors.email && <p className='signup-form--error'>{errors.email.message} </p>}
       </div>
-
 
       <div className='signup-form--input'>
         <label className='signup-form--label'>Password</label>
@@ -111,7 +106,6 @@ useEffect(() => {
         {errors.password && <p className='signup-form--error'>{errors.password.message}</p>}
       </div>
 
-
       <div className='signup-form--input'>
         <label className='signup-form--label'>Confirm Password</label>
         <input
@@ -128,11 +122,11 @@ useEffect(() => {
         ) : null}
       </div>
 
-      <button className='signup-form--submit' type='submit'>Sign Up</button>
-
+      <button className='signup-form--submit' type='submit'>
+        Sign Up
+      </button>
     </form>
   );
 };
-
 
 export default Signup;
