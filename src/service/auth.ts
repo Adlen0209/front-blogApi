@@ -59,9 +59,9 @@ export const isAuthenticated = () => {
   if(decoded.userId) {
     console.log(decoded.userId);
   }
-  
+  const userId = decoded.userId
   console.log('token valid');
-  return JSON.parse(token);
+  return {token: JSON.parse(token), userId};
 };
 
 export function saveAuthorization(token: string) {

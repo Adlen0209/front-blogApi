@@ -10,6 +10,7 @@ export type ArticlesType = {
   slug: string;
   title: string;
   content: string;
+  user_id: number | string;
 };
 
 export type newArticleType = { 
@@ -49,6 +50,15 @@ export const createArticle = async (data: newArticleType) => {
     console.log(response);
     return response.data;
 
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const deleteArticle = async (id: number) => {
+  try {
+    const response = await axiosInstance.delete(`/articles/${id}`);
+    return response.data;
   } catch (error) {
     throw error;
   }

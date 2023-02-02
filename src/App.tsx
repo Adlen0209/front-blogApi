@@ -12,10 +12,11 @@ import Signup from './componants/signup/signup';
 import Login from './componants/login/login';
 import { useContext, useEffect } from 'react';
 import { UserContext } from './context/userContext';
-import { isAuthenticated } from './service/auth';
+import { isAuthenticated, saveAuthorization } from './service/auth';
 import CreateArticle from './componants/createArticle/CreateArticle';
 
 const App: React.FC = () => {
+  const {  setUserId } = useContext(UserContext);
   const { loggedIn, toggleLoggedIn } = useContext(UserContext);
   const categoryQuery = useQuery('categories', fetchCategories);
   const articlesQuery = useQuery('articles', fetchArticles);
@@ -25,6 +26,10 @@ const App: React.FC = () => {
     const test = isAuthenticated();
     if (test) {
       toggleLoggedIn(true);
+      setUserId(test.userId);
+      saveAuthorization(test.token)
+      
+      
     } else {
       toggleLoggedIn(false);
     }
