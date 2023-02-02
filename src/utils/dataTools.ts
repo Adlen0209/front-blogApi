@@ -10,3 +10,21 @@ export function getArticlesByCategory(articles: ArticlesType[], category: string
 export function findArticleBySlug(articles: ArticlesType[], slug: string | undefined) {
   return articles.find((article) => article.slug === slug);
 }
+
+export function extractCategoryIdAndLabel(data: any) {
+
+  const categoryId = data[0]
+
+  const categoryName = data.slice(1, data.length);
+
+  return { categoryId, categoryName };
+
+}
+
+export function slugify(string: string) {
+  return string
+  .toLowerCase()
+  .trim()
+  .replace(/ /g, '-')
+  .replace(/[^\w-]+/g, '')
+}

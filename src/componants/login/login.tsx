@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
-import { login } from '../../service/auth';
+import { login, saveAuthorization } from '../../service/auth';
 import './login.scss';
 
 export type Inputs = {
@@ -25,6 +25,7 @@ const Login: React.FC = () => {
     const response = await login(data);
     if (response.token) {
       toggleLoggedIn(true);
+      saveAuthorization(response.token)
       navigate('/');
     }
   };

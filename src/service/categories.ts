@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { ReactNode } from 'react';
+import { axiosInstance } from './auth';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1';
 
 export type CategoryType = {
   name: ReactNode;
@@ -11,7 +10,7 @@ export type CategoryType = {
 };
 export const fetchCategories = async (): Promise<CategoryType[]> => {
   try {
-    const { data } = await axios.get<CategoryType[]>('/categories');
+    const { data } = await axiosInstance.get<CategoryType[]>('/categories');
     return data;
   } catch (error) {
     throw error;

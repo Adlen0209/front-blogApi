@@ -1,11 +1,15 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Inputs } from 'src/componants/login/login';
-axios.defaults.baseURL = 'http://localhost:3000/api/v1';
+
+
+export const axiosInstance = axios.create({
+  baseURL: "http://localhost:3000/api/v1"
+});
 
 export async function signup(firstName: string, lastName: string, email: string, password: string) {
   try {
-    const response = await axios.post('/register', {
+    const response = await axiosInstance.post('/register', {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -22,7 +26,7 @@ export async function signup(firstName: string, lastName: string, email: string,
 export async function login(data: Inputs) {
   try {
     const { email, password } = data;
-    const response = await axios.post('/login', {
+    const response = await axiosInstance.post('/login', {
       email,
       password,
     });
@@ -59,3 +63,14 @@ export const isAuthenticated = () => {
   console.log('token valid');
   return JSON.parse(token);
 };
+
+export function saveAuthorization(token: string) {
+  // Save token in instance
+  axiosInstance.defaults.headers.common.Authorization = token;
+}
+
+export function removeAuthorization() {
+  // Delete token from instance
+  
+  axiosInstance.defaults.headers.common.Authorization = "";
+}

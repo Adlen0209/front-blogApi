@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { removeAuthorization } from '../service/auth';
 import { UserContext } from '../context/userContext';
 import { CategoryType } from '../service/categories';
 
@@ -13,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ categories }) => {
 
   const removeToken = () => {
     localStorage.removeItem('token');
+    removeAuthorization();
     toggleLoggedIn(false);
   };
 
