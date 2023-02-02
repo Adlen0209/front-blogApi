@@ -58,7 +58,7 @@ export const createArticle = async (data: newArticleType) => {
 export const deleteArticle = async (id: number) => {
   try {
     const response = await axiosInstance.delete(`/articles/${id}`);
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
