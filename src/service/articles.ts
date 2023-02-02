@@ -18,7 +18,7 @@ export type newArticleType = {
   slug: string;
   title: string;
   content: string;
-  user_id: number | string;
+  userId: number | string;
 }
 // const delay = () => {
 //     return new Promise(resolve => setTimeout(resolve, 2000));
@@ -36,10 +36,8 @@ export const fetchArticles = async (): Promise<ArticlesType[]> => {
 
 export const createArticle = async (data: newArticleType) => {
   try {
-    const token = localStorage.getItem('token');
-    const decodedToken: any = jwtDecode(token as string);
-    const userId = decodedToken.userId;
-    const { categoryName, categoryId, slug, title, content } = data;
+ 
+    const { categoryName, categoryId, slug, title, content, userId } = data;
     const response = await axiosInstance.post('/articles', {
       category: categoryName,
       category_id: categoryId,

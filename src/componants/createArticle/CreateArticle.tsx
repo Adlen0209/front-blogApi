@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { createArticle, newArticleType } from '../../service/articles';
 import { CategoryType } from 'src/service/categories';
 import { extractCategoryIdAndLabel, slugify } from '../../utils/dataTools';
+import { UserContext } from '../../context/userContext';
 
 
 type CreateArticleProps = {
@@ -18,7 +19,9 @@ type CreateArticleInputs = {
 }
 const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
     const { register, handleSubmit, trigger, formState: {errors} } = useForm<CreateArticleInputs>({mode: 'onBlur'});
-const onSubmit = async (data: CreateArticleInputs) => {
+    const { userId } = useContext(UserContext);
+
+    const onSubmit = async (data: CreateArticleInputs) => {
     console.log(data);
     // console.log(data.category[0]);
     // console.log(data.category.slice(1, data.category.length));
@@ -34,9 +37,10 @@ const onSubmit = async (data: CreateArticleInputs) => {
         categoryName,
         slug: slug,
         categoryId,
+        userId,
     }
     const response = await createArticle(dataArticle as newArticleType);
-    console.log(response);
+    console.log("userId >>>>>>", userId);
 
 
 }

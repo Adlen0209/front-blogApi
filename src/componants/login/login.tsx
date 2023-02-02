@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ export type Inputs = {
   password: string;
 };
 const Login: React.FC = () => {
+  const { setUserId } = useContext(UserContext);
   const { toggleLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -23,9 +25,17 @@ const Login: React.FC = () => {
 
   const onSubmit = async (data: Inputs) => {
     const response = await login(data);
+
+    
+
     if (response.token) {
+      
+      const decodedToken: any = jwtDecode(response.token as string);
+      const userId = decodedToken.userId;
+      setUserId(userId);
       toggleLoggedIn(true);
-      saveAuthorization(response.token)
+      saveAuthorization(response.token);
+
       navigate('/');
     }
   };

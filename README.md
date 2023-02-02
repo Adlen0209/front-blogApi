@@ -15,10 +15,12 @@ TODO:
 signup [done]
 login [done]
 
-header incluant login et signup
-reeact context une fois connecté
+header incluant login et signup [done]
+reeact context une fois connecté [done]
+deconnection [done]
 
-deconnection
-creer un article
-modifier un article 
+récupérer id category au select de la category sur la page edit article.
+redirection apres submit signup sur page login
+creer un article [done]
 supprimer un article
+modifier un article 

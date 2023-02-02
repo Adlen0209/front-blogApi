@@ -27,9 +27,9 @@ export const UserContextprovider = ({ children }: UserContextProviderType) => {
     setLoggedIn(value);
   };
 
-  const toggleUserId = (value: null | number) => {
-    setUserId(value);
-}
+//   const toggleUserId = (value: null | number) => {
+//     setUserId(value);
+// }
 
   return (
     <UserContext.Provider
@@ -37,7 +37,7 @@ export const UserContextprovider = ({ children }: UserContextProviderType) => {
         loggedIn,
         toggleLoggedIn,
         userId,
-        toggleUserId,
+        setUserId,
       }}
     >
       {children}
