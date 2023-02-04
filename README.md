@@ -1,6 +1,7 @@
-## Geting started 
+## Geting started
+
 ```bash
-npm i 
+npm i
 npm start
 ```
 
@@ -23,4 +24,6 @@ récupérer id category au select de la category sur la page edit article.
 redirection apres submit signup sur page login
 creer un article [done]
 supprimer un article
-modifier un article 
+modifier un article
+Redirection signup >>>>> LOGIN
+redirection sumit new article >>>>> page article
