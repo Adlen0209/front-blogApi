@@ -18,12 +18,16 @@ const Signup: React.FC = () => {
     trigger,
     setFocus,
     watch,
+    setError,
     getValues,
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onBlur' });
 
   const onSubmit = async (data: Inputs) => {
-    signup(data.firstName, data.lastName, data.email, data.password);
+    const response = await signup(data.firstName, data.lastName, data.email, data.password);
+    if (response == 'email alray in use') {
+      setError('email', { message: 'email alray in use' });
+    }
   };
 
   useEffect(() => {
