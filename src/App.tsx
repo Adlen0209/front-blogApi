@@ -14,9 +14,10 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from './context/userContext';
 import { isAuthenticated, saveAuthorization } from './service/auth';
 import CreateArticle from './componants/createArticle/CreateArticle';
+import Edit from './componants/Edit/Edit';
 
 const App: React.FC = () => {
-  const {  setUserId } = useContext(UserContext);
+  const { setUserId } = useContext(UserContext);
   const { loggedIn, toggleLoggedIn } = useContext(UserContext);
   const categoryQuery = useQuery('categories', fetchCategories);
   const articlesQuery = useQuery('articles', fetchArticles);
@@ -27,9 +28,7 @@ const App: React.FC = () => {
     if (test) {
       toggleLoggedIn(true);
       setUserId(test.userId);
-      saveAuthorization(test.token)
-      
-      
+      saveAuthorization(test.token);
     } else {
       toggleLoggedIn(false);
     }
@@ -64,7 +63,16 @@ const App: React.FC = () => {
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
         <Route path='/create' element={<CreateArticle categories={categoryQuery.data ?? []} />} />
-
+        <Route
+          path='/edit/:slug'
+          element={
+            <Edit
+              articles={articlesQuery.data as ArticlesType[]}
+              categories={categoryQuery.data ?? []}
+            />
+          }
+        />
+        {/* <Route path="/edit" element={<EditArticle />} /> */}
         <Route path='*' element={'404'} />
       </Routes>
     </div>

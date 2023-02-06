@@ -23,28 +23,42 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ articles }) => {
     return <Navigate to='/404' />;
   }
 
-   const handleDelete = async () => {
-    
+  const handleDelete = async () => {
     console.log('delete post', article.id);
     const response = await deleteArticle(+article.id);
     console.log(response);
-    if(response.status === 200) { 
-      navigate('/')
-     }
-   
+    if (response.status === 200) {
+      navigate('/');
+    }
     return;
-   }
+  };
+
+  const handleEdit = async () => {
+    console.log('edit post');
+    navigate(`/edit/${article.slug}`);
+  };
 
   return (
     <>
-    <article className='article'>
-      <h1>{article.title}</h1>
-      <p>{article.content}</p>
-    </article>
-    {userId === article.user_id &&
-      <button className='delete-button' onClick={handleDelete}>
-        Supprimer
-    </button>}
+      <article className='article'>
+        <h1>{article.title}</h1>
+        <p>{article.content}</p>
+      </article>
+      {
+        userId === article.user_id && (
+          <>
+            <button className='delete-button' onClick={handleDelete}>
+              Supprimer
+            </button>
+            <button className='delete-button' onClick={handleEdit}>
+              Modifier
+            </button>
+          </>
+        )
+        //     <button className='edit-button' onClick={handleEdit}>
+        //     Modifier
+        // </button>
+      }
     </>
   );
 };
