@@ -1,8 +1,5 @@
-
 import jwtDecode from 'jwt-decode';
 import { axiosInstance } from './auth';
-
-
 
 export type ArticlesType = {
   id: number;
@@ -13,14 +10,14 @@ export type ArticlesType = {
   user_id: number | string;
 };
 
-export type newArticleType = { 
+export type newArticleType = {
   categoryName: string;
   categoryId: number | string;
   slug: string;
   title: string;
   content: string;
   userId: number | string;
-}
+};
 // const delay = () => {
 //     return new Promise(resolve => setTimeout(resolve, 2000));
 // }
@@ -37,7 +34,6 @@ export const fetchArticles = async (): Promise<ArticlesType[]> => {
 
 export const createArticle = async (data: newArticleType) => {
   try {
- 
     const { categoryName, categoryId, slug, title, content, userId } = data;
     const response = await axiosInstance.post('/articles', {
       category: categoryName,
@@ -49,11 +45,10 @@ export const createArticle = async (data: newArticleType) => {
     });
     console.log(response);
     return response.data;
-
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const deleteArticle = async (id: number) => {
   try {
@@ -62,4 +57,14 @@ export const deleteArticle = async (id: number) => {
   } catch (error) {
     throw error;
   }
-}
+};
+
+export const updateArticle = async (id: number, data: newArticleType) => {
+  try {
+    const response = await axiosInstance.patch(`/articles/${id}`, data);
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
