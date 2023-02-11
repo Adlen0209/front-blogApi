@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { signup } from '../../service/auth';
 import './signup.scss';
 
@@ -12,6 +13,7 @@ type Inputs = {
 };
 
 const Signup: React.FC = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,6 +29,10 @@ const Signup: React.FC = () => {
     const response = await signup(data.firstName, data.lastName, data.email, data.password);
     if (response == 'email alray in use') {
       setError('email', { message: 'email alray in use' });
+    }
+    if (response == 'your account has been successfully created') {
+      console.log('redirection ici');
+      navigate('/login');
     }
   };
 

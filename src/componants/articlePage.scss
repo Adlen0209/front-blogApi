@@ -1,0 +1,9 @@
+.article {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
+
+  &--delete-button {
+    margin-right: 1rem;
+  }
+}

@@ -4,6 +4,8 @@ import { createArticle, newArticleType } from '../../service/articles';
 import { CategoryType } from 'src/service/categories';
 import { extractCategoryIdAndLabel, slugify } from '../../utils/dataTools';
 import { UserContext } from '../../context/userContext';
+import { useNavigate } from 'react-router-dom';
+import './CreateArticle.scss';
 
 type CreateArticleProps = {
   categories: CategoryType[];
@@ -16,7 +18,10 @@ type CreateArticleInputs = {
   category_id: string | number;
   user_id: string | number;
 };
+
 const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -27,15 +32,8 @@ const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
   const { userId } = useContext(UserContext);
 
   const onSubmit = async (data: CreateArticleInputs) => {
-    console.log(data);
-    // console.log(data.category[0]);
-    // console.log(data.category.slice(1, data.category.length));
     const { categoryId, categoryName } = extractCategoryIdAndLabel(data.category);
-    console.log('cat id' + ' ' + categoryId);
-    console.log('cat name' + ' ' + categoryName);
-
     const slug = slugify(data.title);
-    console.log('slug' + ' ' + slug);
     const dataArticle = {
       title: data.title,
       content: data.content,
@@ -45,10 +43,11 @@ const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
       userId,
     };
     const response = await createArticle(dataArticle as newArticleType);
-    console.log('userId >>>>>>', userId);
-    console.log(response);
     if (response == 'title already exists') {
       setError('title', { message: 'title already exists' });
+    }
+    if (response == 'post has been successfully created') {
+      console.log('redirection iciii');
     }
   };
 
@@ -90,9 +89,9 @@ const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
       </div>
 
       <div className='createArticle-form--input'>
-        <label className='createArticle-form--label'>Content</label>
+        <label className='createArticle-form--label--content'>Content</label>
         <textarea
-          className='createArticle-form--input'
+          className='createArticle-form--input--content'
           id='content'
           required={true}
           rows={5}
@@ -102,7 +101,7 @@ const CreateArticle: React.FC<CreateArticleProps> = ({ categories }) => {
           })}
           onKeyUp={() => trigger('content')}
         />
-        {errors.content && <p className='login-form--error'>{errors.content.message}</p>}
+        {errors.content && <p className='login-form--error'></p>}
       </div>
       <button className='createArticle-form--submit' type='submit'>
         Create article

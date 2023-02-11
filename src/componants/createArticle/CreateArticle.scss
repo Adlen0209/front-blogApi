@@ -1,0 +1,29 @@
+.createArticle-form {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  &--select {
+    width: 12rem;
+  }
+  &--label {
+    margin-top: 1rem;
+    width: 12rem;
+  }
+  &--input {
+    margin-top: 0.2rem;
+    width: 12rem;
+  }
+  &--field {
+    margin-top: 1rem;
+    width: 12rem;
+  }
+  &--submit {
+    margin-top: 1rem;
+    width: 12rem;
+  }
+  &--input--content {
+    width: 12rem;
+  }
+}

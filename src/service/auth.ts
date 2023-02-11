@@ -2,9 +2,8 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Inputs } from 'src/componants/login/login';
 
-
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api/v1"
+  baseURL: 'http://localhost:3000/api/v1',
 });
 
 export async function signup(firstName: string, lastName: string, email: string, password: string) {
@@ -38,6 +37,7 @@ export async function login(data: Inputs) {
 
     return response.data;
   } catch (error) {
+    console.log('erreur identifiants');
     throw error;
   }
 }
@@ -56,12 +56,12 @@ export const isAuthenticated = () => {
     console.log('token no valid');
     return false;
   }
-  if(decoded.userId) {
+  if (decoded.userId) {
     console.log(decoded.userId);
   }
-  const userId = decoded.userId
+  const userId = decoded.userId;
   console.log('token valid');
-  return {token: JSON.parse(token), userId};
+  return { token: JSON.parse(token), userId };
 };
 
 export function saveAuthorization(token: string) {
@@ -71,6 +71,6 @@ export function saveAuthorization(token: string) {
 
 export function removeAuthorization() {
   // Delete token from instance
-  
-  axiosInstance.defaults.headers.common.Authorization = "";
+
+  axiosInstance.defaults.headers.common.Authorization = '';
 }

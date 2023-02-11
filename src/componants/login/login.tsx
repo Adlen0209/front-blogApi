@@ -19,6 +19,7 @@ const Login: React.FC = () => {
     register,
     handleSubmit,
     setFocus,
+    setError,
     trigger,
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onBlur' });
@@ -26,10 +27,11 @@ const Login: React.FC = () => {
   const onSubmit = async (data: Inputs) => {
     const response = await login(data);
 
-    
+    if (response.errorMessage == 'erreur credentials' || 'User not found') {
+      setError('password', { message: 'invalid credentials' });
+    }
 
     if (response.token) {
-      
       const decodedToken: any = jwtDecode(response.token as string);
       const userId = decodedToken.userId;
       setUserId(userId);

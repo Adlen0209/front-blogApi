@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import { ArticlesType, deleteArticle } from '../service/articles';
 import { findArticleBySlug } from '../utils/dataTools';
 import Spinner from './spinner/spinner';
+import './articlePage.scss';
 
 type ArticlePageProps = {
   articles: ArticlesType[];
@@ -46,14 +47,14 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ articles }) => {
       </article>
       {
         userId === article.user_id && (
-          <>
-            <button className='delete-button' onClick={handleDelete}>
+          <div className='article'>
+            <button className='article--delete-button' onClick={handleDelete}>
               Supprimer
             </button>
-            <button className='delete-button' onClick={handleEdit}>
+            <button className='article--edit-button' onClick={handleEdit}>
               Modifier
             </button>
-          </>
+          </div>
         )
         //     <button className='edit-button' onClick={handleEdit}>
         //     Modifier

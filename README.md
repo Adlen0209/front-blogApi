@@ -23,7 +23,7 @@ deconnection [done]
 récupérer id category au select de la category sur la page edit article.
 redirection apres submit signup sur page login
 creer un article [done]
-supprimer un article
-modifier un article
+supprimer un article [done]
+modifier un article [done]
 Redirection signup >>>>> LOGIN
 redirection sumit new article >>>>> page article
