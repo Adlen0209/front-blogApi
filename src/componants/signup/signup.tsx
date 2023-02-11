@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../service/auth';
 import './signup.scss';
 
@@ -18,7 +18,6 @@ const Signup: React.FC = () => {
     register,
     handleSubmit,
     trigger,
-    setFocus,
     watch,
     setError,
     getValues,
@@ -35,10 +34,6 @@ const Signup: React.FC = () => {
       navigate('/login');
     }
   };
-
-  useEffect(() => {
-    setFocus('firstName');
-  }, [setFocus]);
 
   return (
     <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
@@ -135,6 +130,9 @@ const Signup: React.FC = () => {
       <button className='signup-form--submit' type='submit'>
         Sign Up
       </button>
+      <p className='login--form-message'>
+        Déja un compte ? <Link to='/login'>Login Page</Link>
+      </p>
     </form>
   );
 };

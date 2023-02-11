@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { login, saveAuthorization } from '../../service/auth';
 import './login.scss';
@@ -84,6 +84,9 @@ const Login: React.FC = () => {
       <button className='login-form--submit' type='submit'>
         Login
       </button>
+      <p className='login--form-message'>
+        Pas de compte ? <Link to='/signup'>Inscrivez-vous</Link>
+      </p>
     </form>
   );
 };
